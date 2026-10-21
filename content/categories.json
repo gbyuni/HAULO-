@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "id": "start",
+      "name": "하울로 시작하기",
+      "desc": "하울로 소개부터 참여 확정까지",
+      "icon": "user"
+    },
+    {
+      "id": "points",
+      "name": "적립금",
+      "desc": "채널 규모별 기준과 추가 적립금",
+      "icon": "coin"
+    },
+    {
+      "id": "order",
+      "name": "제품 구매·배송",
+      "desc": "구매 수량, 배송비, 주문 취소",
+      "icon": "bag"
+    },
+    {
+      "id": "content",
+      "name": "콘텐츠 제작",
+      "desc": "제작 기준, 업로드 기한, 광고 표기",
+      "icon": "camera"
+    },
+    {
+      "id": "earn",
+      "name": "판매 링크·수익",
+      "desc": "판매 링크, 수수료, 회원 등급",
+      "icon": "link"
+    },
+    {
+      "id": "refund",
+      "name": "교환·환불",
+      "desc": "시딩 제품 기준과 팔로워 주문",
+      "icon": "refresh"
+    },
+    {
+      "id": "faq",
+      "name": "자주 묻는 질문",
+      "desc": "가장 많이 받는 질문",
+      "icon": "help"
+    }
+  ]
+}
