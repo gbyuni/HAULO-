@@ -1,0 +1,190 @@
+# HAULO 크리에이터 가이드 관리자 설정 (Decap CMS)
+# 관리자 화면: https://사이트주소/admin/
+backend:
+  name: git-gateway
+  branch: main          # 저장소 기본 브랜치 이름이 다르면 바꿔 주세요.
+
+locale: ko
+media_folder: images     # 올린 이미지가 저장되는 폴더
+public_folder: /images   # 화면에서 이미지를 부르는 주소
+
+collections:
+  # 1. 메인 홈 (크리에이터 화면 맨 위 검색 영역, 링크, 하단 카드)
+  - name: home
+    label: 메인 홈
+    editor: { preview: false }
+    files:
+      - name: home
+        label: 메인 홈
+        file: content/home.json
+        fields:
+          - label: 검색 영역
+            name: hero
+            widget: object
+            collapsed: false
+            fields:
+              - { label: 제목, name: title, widget: string }
+              - { label: 설명, name: text, widget: text }
+          - label: 자주 찾는 검색어
+            name: chips
+            widget: list
+            hint: 검색창 아래에 보이는 단어예요. 4개 안팎을 추천해요.
+          - label: 링크
+            name: links
+            widget: object
+            collapsed: false
+            hint: https:// 로 시작해야 해요. 비워 두면 해당 버튼이 숨겨져요.
+            fields:
+              - { label: "1:1 문의 (카카오채널)", name: kakao, widget: string, required: false }
+              - { label: 하울로몰, name: mall, widget: string, required: false }
+              - { label: 회원가입, name: signup, widget: string, required: false }
+              - { label: About HAULO, name: about, widget: string, required: false }
+              - { label: Instagram, name: instagram, widget: string, required: false }
+          - label: 하단 안내 카드
+            name: voice
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: 제목, name: title, widget: string }
+              - { label: 설명, name: text, widget: text }
+              - { label: 버튼 글자, name: label, widget: string }
+              - { label: 버튼 링크, name: url, widget: string, required: false, hint: "비워 두면 '준비 중'으로 보여요." }
+
+  # 2. 참여 단계 (HOW IT WORKS)
+  - name: steps
+    label: 참여 단계
+    editor: { preview: false }
+    files:
+      - name: steps
+        label: 참여 단계
+        file: content/steps.json
+        fields:
+          - label: 단계
+            name: steps
+            widget: list
+            summary: "{{fields.title}}"
+            hint: 위에서부터 STEP 1, 2, 3… 순서로 보여요. 끌어서 순서를 바꿀 수 있어요.
+            fields:
+              - { label: 제목, name: title, widget: string }
+              - { label: 설명, name: desc, widget: string }
+
+  # 3. 카테고리 (GUIDE)
+  - name: categories
+    label: 카테고리
+    editor: { preview: false }
+    files:
+      - name: categories
+        label: 카테고리 목록
+        file: content/categories.json
+        fields:
+          - label: 카테고리
+            name: categories
+            widget: list
+            summary: "{{fields.name}}"
+            hint: 위에서부터 홈 화면에 보이는 순서예요. 끌어서 순서를 바꿀 수 있어요.
+            fields:
+              - { label: 이름, name: name, widget: string }
+              - { label: 한 줄 설명, name: desc, widget: string }
+              - label: 아이콘
+                name: icon
+                widget: select
+                default: page
+                options:
+                -  { label: "사람", value: "user" }
+                -  { label: "적립금", value: "coin" }
+                -  { label: "쇼핑백", value: "bag" }
+                -  { label: "카메라", value: "camera" }
+                -  { label: "링크", value: "link" }
+                -  { label: "교환", value: "refresh" }
+                -  { label: "물음표", value: "help" }
+                -  { label: "말풍선", value: "chat" }
+                -  { label: "체크", value: "check" }
+                -  { label: "상승", value: "trend" }
+                -  { label: "페이지", value: "page" }
+                -  { label: "선물", value: "gift" }
+                -  { label: "별", value: "star" }
+              - label: 주소용 ID
+                name: id
+                widget: string
+                pattern: ['^[a-z0-9-]+$', '영문 소문자, 숫자, 하이픈(-)만 쓸 수 있어요.']
+                hint: 새 카테고리에만 정해 주세요 (예. event). 이미 있는 카테고리의 ID를 바꾸면 아티클 연결이 끊겨요.
+
+  # 4. 아티클 (카테고리 안의 글)
+  - name: articles
+    label: 아티클
+    label_singular: 아티클
+    folder: content/articles
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: "a{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    summary: "{{title}}"
+    sortable_fields: [title, updated, order]
+    view_groups:
+      - { label: 카테고리별, field: category }
+    editor: { preview: false }
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - label: 카테고리
+        name: category
+        widget: relation
+        collection: categories
+        file: categories
+        search_fields: ["categories.*.name"]
+        display_fields: ["categories.*.name"]
+        value_field: "categories.*.id"
+      - label: 순서
+        name: order
+        widget: number
+        value_type: int
+        default: 100
+        hint: 같은 카테고리 안에서 숫자가 작을수록 먼저 보여요. 사이에 넣으려면 15처럼 중간 숫자를 쓰세요.
+      - label: 최종 업데이트
+        name: updated
+        widget: string
+        required: false
+        hint: "예. 2026.10.22 — 내용을 고칠 때 함께 바꿔 주세요."
+      - label: 본문
+        name: body
+        widget: markdown
+        buttons: [bold, link, heading-three, bulleted-list, numbered-list, quote]
+        editor_components: [image]
+        hint: "인용(따옴표) 버튼은 회색 안내 박스로 보여요. 표는 오른쪽 위에서 '마크다운' 모드로 바꾼 뒤 | 항목 | 내용 | 형식으로 써요."
+
+  # 5. 신규 업데이트 (NEW UPDATE)
+  - name: updates
+    label: 신규 업데이트
+    editor: { preview: false }
+    files:
+      - name: updates
+        label: 신규 업데이트
+        file: content/updates.json
+        fields:
+          - label: 소식
+            name: updates
+            widget: list
+            summary: "{{fields.date}} {{fields.title}}"
+            hint: 위에 있을수록 먼저 보여요. 3개 안팎을 추천해요. 비워 두면 홈 화면에서 이 영역이 숨겨져요.
+            fields:
+              - { label: 날짜, name: date, widget: string, hint: 예. 2026.10.22 }
+              - { label: 제목, name: title, widget: string }
+              - { label: 내용, name: text, widget: text }
+              - label: 아이콘
+                name: icon
+                widget: select
+                default: check
+                options:
+                -  { label: "사람", value: "user" }
+                -  { label: "적립금", value: "coin" }
+                -  { label: "쇼핑백", value: "bag" }
+                -  { label: "카메라", value: "camera" }
+                -  { label: "링크", value: "link" }
+                -  { label: "교환", value: "refresh" }
+                -  { label: "물음표", value: "help" }
+                -  { label: "말풍선", value: "chat" }
+                -  { label: "체크", value: "check" }
+                -  { label: "상승", value: "trend" }
+                -  { label: "페이지", value: "page" }
+                -  { label: "선물", value: "gift" }
+                -  { label: "별", value: "star" }

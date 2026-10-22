@@ -26,7 +26,8 @@ for (const c of cats) {
   c.articles.forEach((a) => delete a.order);
 }
 
-const guide = { ...home, steps, updates, categories: cats };
+// commit: 관리자 화면이 '반영됐어요' 알림을 띄울 때 확인하는 값이에요 (Netlify가 넣어 줘요).
+const guide = { ...home, steps, updates, categories: cats, commit: process.env.COMMIT_REF || '' };
 fs.writeFileSync(path.join(__dirname, 'guide.json'), JSON.stringify(guide));
 console.log(`guide.json: 카테고리 ${cats.length}개, 아티클 ${files.length - orphans.length}개`);
 if (orphans.length) console.warn('카테고리가 없어 보이지 않는 아티클:\n  ' + orphans.join('\n  '));
