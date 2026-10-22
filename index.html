@@ -55,6 +55,8 @@ button,input,textarea,select{font:inherit;color:inherit}
 .hero .ban{position:absolute;top:0;left:0;width:100%;height:var(--bh);object-fit:cover;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
 .hero .wrap{position:relative;padding-top:calc(var(--bh) + 8px);padding-bottom:72px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;width:100%;max-width:1120px;box-sizing:border-box}
 .hero .wrap>*{max-width:100%;min-width:0;box-sizing:border-box}
+.hero .wrap>.search{max-width:min(560px,100%)}
+.hero .wrap>p.lead{max-width:min(30em,100%)}
 .hero h1,.hero p.lead{overflow-wrap:anywhere}
 @media (min-width:900px){.hero .wrap{padding-top:calc(var(--bh) + 16px);padding-bottom:96px;gap:24px}}
 .eyebrow{margin:0;font-size:12px;font-weight:700;letter-spacing:.16em;color:#fff}
@@ -219,6 +221,8 @@ footer a{text-decoration:none;color:#D0D0D0}
 .body figure.img img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--soft)}
 .body figcaption{margin-top:8px;font-size:13px;color:var(--muted);text-align:center}
 .loading{min-height:60vh;display:grid;place-items:center;color:var(--muted);font-size:14px}
+/* 관리자 화면에서 엔터로 줄을 바꾼 곳은 그대로 줄바꿈해서 보여줘요. */
+.hero p.lead,.ucard p,.vcard p,.steps span.d,.ccard p,.cat-head p,.lead2{white-space:pre-line}
 </style>
 </head>
 <body>
