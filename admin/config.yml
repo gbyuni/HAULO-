@@ -23,6 +23,7 @@ collections:
             widget: object
             collapsed: false
             fields:
+              - { label: 상단 카피, name: eyebrow, widget: string, required: false, hint: 타이틀 위에 작게 보이는 한 줄이에요. }
               - { label: 제목, name: title, widget: string }
               - { label: 설명, name: text, widget: text }
           - label: 자주 찾는 검색어
