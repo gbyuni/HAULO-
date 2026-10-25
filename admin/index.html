@@ -509,7 +509,7 @@ function stepsPane() {
 }
 function basicPane() {
   return paneHead('메인 홈') +
-    '<div class="card"><div class="card-h"><b>검색 영역</b></div>' + fld('제목', 'hero.title') + fld('설명', 'hero.text', { multi: true, rows: 2 }) +
+    '<div class="card"><div class="card-h"><b>첫 화면 문구</b></div>' + fld('상단 카피', 'hero.eyebrow', { ph: '예. 취향 공유하면 수익이 되는', hint: '타이틀 위에 작게 보이는 한 줄이에요. 비워 두면 보이지 않아요.' }) + fld('타이틀', 'hero.title') + fld('설명', 'hero.text', { multi: true, rows: 2 }) +
       fld('자주 찾는 검색어', 'chipsText', { hint: '쉼표로 구분해요. 예: 적립금, 업로드 기한, 판매 링크' }) + '</div>' +
     '<div class="card"><div class="card-h"><b>링크</b></div><p class="hint" style="margin-top:-4px">https:// 로 시작해야 해요. 비워 두면 버튼이 숨겨지거나 ‘준비 중’으로 보여요.</p>' +
       '<div class="grid2">' + fld('1:1 문의 (카카오채널)', 'links.kakao') + fld('하울로몰', 'links.mall') + fld('회원가입', 'links.signup') + fld('About HAULO', 'links.about') + fld('Instagram', 'links.instagram') + '</div></div>' +
@@ -765,12 +765,12 @@ function assemble(files) {
   });
   cats.forEach(function (c) { c.articles.sort(function (x, y) { return x._o - y._o || x.title.localeCompare(y.title, 'ko'); }); c.articles.forEach(function (a) { delete a._o; }); });
   var hero = home.hero || {};
-  return { hero: { title: hero.title || '', text: hero.text || '' }, chips: home.chips || [], links: home.links || {}, voice: home.voice || [],
+  return { hero: { eyebrow: hero.eyebrow || '', title: hero.title || '', text: hero.text || '' }, chips: home.chips || [], links: home.links || {}, voice: home.voice || [],
     steps: g('content/steps.json').steps || [], updates: g('content/updates.json').updates || [], categories: cats, _orphans: orphans };
 }
 function serialize(d) {
   var o = {};
-  o['content/home.json'] = { hero: { title: (d.hero || {}).title || '', text: (d.hero || {}).text || '' }, chips: d.chips || [], links: d.links || {}, voice: d.voice || [] };
+  o['content/home.json'] = { hero: { eyebrow: (d.hero || {}).eyebrow || '', title: (d.hero || {}).title || '', text: (d.hero || {}).text || '' }, chips: d.chips || [], links: d.links || {}, voice: d.voice || [] };
   o['content/steps.json'] = { steps: d.steps || [] };
   o['content/updates.json'] = { updates: d.updates || [] };
   o['content/categories.json'] = { categories: (d.categories || []).map(function (c) { return { id: c.id, name: c.name, desc: c.desc, icon: c.icon }; }) };
