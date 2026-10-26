@@ -1199,6 +1199,7 @@ function secOn(d, k) { return sections(d).filter(function (x) { return x.key ===
 function allProducts(d) { var r = []; (d.brands || []).forEach(function (b) { (b.products || []).forEach(function (p) { r.push({ p: p, b: b }); }); }); return r; }
 function bcatOf(d, id) { return (d.brandCats || []).filter(function (c) { return c.id === id; })[0] || { id: id, name: '', ko: '' }; }
 function mono(b) { return b.logo ? '<img src="' + esc(b.logo) + '" alt="">' : '<span>' + esc((b.name || '?').slice(0, 1)) + '</span>'; }
+function prodHref(p) { var u = safeUrl(p.link); return u && !p.body ? esc(u) + '" target="_blank" rel="noopener' : '#p-' + esc(p.id); }
 var ARROW = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>';
 function allArticles(d) { var r = []; (d.categories || []).forEach(function (c) { (c.articles || []).forEach(function (a) { r.push({ a: a, c: c }); }); }); return r; }
 
@@ -1312,7 +1313,7 @@ function bsideHTML(curB, curP) {
       return '<div class="label">' + esc(g.name) + '</div><ul>' + g.list.map(function (b) {
         var on = curB && b.id === curB.id, ps = b.products || [];
         return '<li' + (on ? ' class="on"' : '') + '><a href="#b-' + esc(b.id) + '"' + (on && !curP ? ' aria-current="page"' : '') + '>' + esc(b.name) + '</a>' +
-          (on && ps.length ? '<ul class="sub">' + ps.map(function (p) { return '<li><a href="#p-' + esc(p.id) + '"' + (curP && p.id === curP.id ? ' aria-current="page"' : '') + '>' + esc(p.name || '제품 가이드') + '</a></li>'; }).join('') + '</ul>' : '') + '</li>';
+          (on && ps.length ? '<ul class="sub">' + ps.map(function (p) { return '<li><a href="' + prodHref(p) + '"' + (curP && p.id === curP.id ? ' aria-current="page"' : '') + '>' + esc(p.name || '제품 가이드') + '</a></li>'; }).join('') + '</ul>' : '') + '</li>';
       }).join('') + '</ul>';
     }).join('') + '</nav></aside>';
 }
@@ -1475,11 +1476,11 @@ function bind() {
       var t = q.value.trim().toLowerCase();
       if (!t) { res.hidden = true; res.innerHTML = ''; return; }
       var hits = allArticles(view).filter(function (x) { return (x.a.title + ' ' + plain(x.a.body) + ' ' + x.c.name).toLowerCase().indexOf(t) > -1; }).map(function (x) { return { href: x.a.id, label: x.c.name, title: x.a.title }; });
-      if (secOn(view, 'brands')) hits = hits.concat(allProducts(view).filter(function (x) { return (x.p.name + ' ' + plain(x.p.body) + ' ' + x.b.name).toLowerCase().indexOf(t) > -1; }).map(function (x) { return { href: 'p-' + x.p.id, label: x.b.name + ' 가이드', title: x.p.name }; }),
+      if (secOn(view, 'brands')) hits = hits.concat(allProducts(view).filter(function (x) { return (x.p.name + ' ' + plain(x.p.body) + ' ' + x.b.name).toLowerCase().indexOf(t) > -1; }).map(function (x) { return { url: prodHref(x.p), label: x.b.name + ' 가이드', title: x.p.name }; }),
         (view.brands || []).filter(function (b) { return (b.name + ' ' + (b.tagline || '')).toLowerCase().indexOf(t) > -1; }).map(function (b) { return { href: 'b-' + b.id, label: '입점 브랜드', title: b.name }; }));
       hits = hits.slice(0, 8);
       var kakao = safeUrl((view.links || {}).kakao);
-      res.innerHTML = hits.length ? hits.map(function (x) { return '<li><a href="#' + esc(x.href) + '"><small>' + esc(x.label) + '</small>' + esc(x.title) + '</a></li>'; }).join('')
+      res.innerHTML = hits.length ? hits.map(function (x) { return '<li><a href="' + (x.url || '#' + esc(x.href)) + '"><small>' + esc(x.label) + '</small>' + esc(x.title) + '</a></li>'; }).join('')
         : '<li class="none">찾는 내용이 없어요. 다른 단어로 검색하거나 ' + (kakao ? '<a href="' + esc(kakao) + '">카카오채널</a>로 물어봐 주세요.' : '담당자에게 물어봐 주세요.') + '</li>';
       res.hidden = false;
     };
