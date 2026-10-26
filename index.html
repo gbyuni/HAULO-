@@ -838,10 +838,10 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "beauty",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://nutseline.com/index.html",
    "logo": "",
    "products": [],
-   "deck": "https://bit.ly/3XbD4l5"
+   "deck": ""
   },
   {
    "id": "curvealive",
@@ -849,7 +849,7 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "beauty",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://kerbalive.com/",
    "logo": "",
    "products": [
     {
@@ -874,7 +874,7 @@ footer a{text-decoration:none;color:#D0D0D0}
      "updated": "2026.07.03"
     }
    ],
-   "deck": "https://bit.ly/3YS9Fh1"
+   "deck": ""
   },
   {
    "id": "packcake",
@@ -882,7 +882,7 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "beauty",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://packcake.com/",
    "logo": "",
    "products": [
     {
@@ -900,7 +900,7 @@ footer a{text-decoration:none;color:#D0D0D0}
      "updated": "2026.06.30"
     }
    ],
-   "deck": "https://featpaper.com/v/Srz54dBY"
+   "deck": ""
   },
   {
    "id": "inskins",
@@ -919,7 +919,7 @@ footer a{text-decoration:none;color:#D0D0D0}
      "updated": "2026.07.08"
     }
    ],
-   "deck": "https://insqeence.com/shopinfo/company.html"
+   "deck": ""
   },
   {
    "id": "ihatemonday",
@@ -927,10 +927,10 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "fashion",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://ihatemonday.co.kr",
    "logo": "",
    "products": [],
-   "deck": "https://bit.ly/4dLIY1K"
+   "deck": ""
   },
   {
    "id": "johnglen",
@@ -938,10 +938,10 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "fashion",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://johnglenn.kr/",
    "logo": "",
    "products": [],
-   "deck": "https://featpaper.com/l/hpNs8qd0"
+   "deck": ""
   },
   {
    "id": "frage",
@@ -949,10 +949,10 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "fashion",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://frage.kr/",
    "logo": "",
    "products": [],
-   "deck": "https://featpaper.com/l/uC03Iemp"
+   "deck": ""
   },
   {
    "id": "clayshop",
@@ -1013,7 +1013,7 @@ footer a{text-decoration:none;color:#D0D0D0}
      "updated": "2026.03.12"
     }
    ],
-   "deck": "https://clayshop.asia/shopinfo/company.html"
+   "deck": ""
   },
   {
    "id": "fruwe",
@@ -1021,7 +1021,7 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "living",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://fruwe.asia/index.html",
    "logo": "",
    "products": [
     {
@@ -1053,7 +1053,7 @@ footer a{text-decoration:none;color:#D0D0D0}
      "updated": "2026.03.12"
     }
    ],
-   "deck": "https://bit.ly/4dOZa2R"
+   "deck": ""
   },
   {
    "id": "puppiz",
@@ -1061,10 +1061,10 @@ footer a{text-decoration:none;color:#D0D0D0}
    "cat": "living",
    "tagline": "",
    "intro": "",
-   "url": "",
+   "url": "https://ppz.kr/",
    "logo": "",
    "products": [],
-   "deck": "https://featpaper.com/viewer/yRECXbO02wPW?email=unknown"
+   "deck": ""
   },
   {
    "id": "eatallday",
@@ -1300,9 +1300,9 @@ function brandHTML(b) {
   return header() + '<main class="doc"><div class="wrap">' + bsideHTML(b, null) +
     '<div class="main"><div class="crumb"><a href="#">사용자 가이드</a><span aria-hidden="true">/</span><a href="#brands">입점 브랜드</a><span aria-hidden="true">/</span><span>' + esc(b.name) + '</span></div>' +
     '<div class="bhead"><div class="bmono lg">' + mono(b) + '</div><div class="bhead-t"><small class="bchip">' + esc(c.name) + '</small><h1>' + esc(b.name) + '</h1>' + (b.tagline ? '<p class="lead2">' + esc(b.tagline) + '</p>' : '') + '</div></div>' +
-    (u || safeUrl(b.deck) ? '<div class="bbtns">' + (u ? '<a class="mallbtn" href="' + esc(u) + '" target="_blank" rel="noopener">브랜드몰 바로가기' + ARROW + '</a>' : '') +
+    (u || safeUrl(b.deck) ? '<div class="bbtns">' + (u ? '<a class="mallbtn" href="' + esc(u) + '" target="_blank" rel="noopener">브랜드 홈페이지 바로가기' + ARROW + '</a>' : '') +
       (safeUrl(b.deck) ? '<a class="mallbtn ghost2" href="' + esc(safeUrl(b.deck)) + '" target="_blank" rel="noopener">브랜드 소개서 보기' + ARROW + '</a>' : '') + '</div>' : '') +
-    '<h2 class="bsub">브랜드 소개</h2>' + (b.intro ? '<div class="body">' + md(b.intro) + '</div>' : safeUrl(b.deck) ? '<p class="empty2">브랜드 소개서에서 자세한 내용을 확인해 주세요.</p>' : '<p class="empty2">브랜드 소개를 준비하고 있어요.</p>') +
+    (b.intro ? '<h2 class="bsub">브랜드 소개</h2><div class="body">' + md(b.intro) + '</div>' : '') +
     '<h2 class="bsub">제품별 콘텐츠 가이드</h2>' + (ps.length ? '<ul class="alist">' + ps.map(function (p) {
       var ext = safeUrl(p.link) && !p.body;
       var sub = ext ? '가이드 열기' : (!safeUrl(p.link) && !p.body) ? '가이드 준비 중' : (p.updated ? '최종 업데이트 ' + p.updated : '');
@@ -1317,7 +1317,7 @@ function prodHTML(p, b) {
     '<h1>' + esc(p.name || '제품 가이드') + '</h1><div class="meta pmeta"><span>' + esc(b.name) + ' 콘텐츠 가이드</span>' + (p.updated ? '<span>최종 업데이트 ' + esc(p.updated) + '</span>' : '') + '</div>' +
     (safeUrl(p.link) ? '<a class="mallbtn" href="' + esc(safeUrl(p.link)) + '" target="_blank" rel="noopener" style="margin:4px 0 20px">콘텐츠 가이드 열기' + ARROW + '</a>' : '') +
     (p.body ? '<div class="body">' + md(p.body) + '</div>' : safeUrl(p.link) ? '' : '<div class="body"><p class="empty2">가이드 내용을 준비하고 있어요.</p></div>') +
-    (u ? '<a class="mallbtn ghost" href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(b.name) + ' 브랜드몰에서 보기' + ARROW + '</a>' : '') +
+    (u ? '<a class="mallbtn ghost" href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(b.name) + ' 홈페이지 보기' + ARROW + '</a>' : '') +
     '<div class="pn">' + (prev ? '<a href="#p-' + esc(prev.id) + '"><small>이전 가이드</small>' + esc(prev.name) + '</a>' : '<span></span>') +
       (next ? '<a class="nx" href="#p-' + esc(next.id) + '"><small>다음 가이드</small>' + esc(next.name) + '</a>' : '') + '</div>' +
     '</article></div></main>' + footer();
@@ -1833,7 +1833,7 @@ function bhomePane() {
   function rowsFor(list) {
     return list.length ? '<div class="rows">' + list.map(function (b) {
       var i = bs.indexOf(b);
-      return '<button type="button" class="row" data-act="sel" data-kind="brand" data-id="' + esc(b.id) + '"><span class="bmono sm">' + mono(b) + '</span><span><b>' + esc(b.name || '이름 없는 브랜드') + '</b><small>콘텐츠 가이드 ' + (b.products || []).length + '개' + (safeUrl(b.url) ? '' : ', 브랜드몰 주소 없음') + (b.intro ? '' : ', 소개 없음') + '</small></span>' + (brandChanged(b, i) ? DOT : '') + CHEV + '</button>';
+      return '<button type="button" class="row" data-act="sel" data-kind="brand" data-id="' + esc(b.id) + '"><span class="bmono sm">' + mono(b) + '</span><span><b>' + esc(b.name || '이름 없는 브랜드') + '</b><small>콘텐츠 가이드 ' + (b.products || []).length + '개' + (safeUrl(b.url) ? '' : ', 홈페이지 주소 없음') + '' + '</small></span>' + (brandChanged(b, i) ? DOT : '') + CHEV + '</button>';
     }).join('') + '</div>' : '<p class="empty-note">이 카테고리에 브랜드가 없어요.</p>';
   }
   var etc = bs.filter(function (b) { return !cats.some(function (c) { return c.id === b.cat; }); });
@@ -1858,10 +1858,10 @@ function brandPane() {
     (confirmKey === 'brand:' + b.id && ps.length ? '<p class="warnbox">이 브랜드의 제품 가이드 ' + ps.length + '개도 함께 삭제돼요.</p>' : '') +
     '<div class="grid2">' + fld('브랜드 이름', p + '.name') + '<div class="f"><label for="f-bcat">카테고리</label><select id="f-bcat" data-path="' + p + '.cat">' + catOpts + '</select></div></div>' +
     fld('한 줄 소개', p + '.tagline', { ph: '예. 피부 장벽을 위한 비건 스킨케어', hint: '홈 화면 브랜드 카드와 브랜드 페이지 제목 아래에 보여요.' }) +
-    '<div class="grid2">' + fld('브랜드몰 주소', p + '.url', { ph: 'https://', hint: '‘브랜드몰 바로가기’ 버튼으로 연결돼요.' }) + fld('브랜드 소개서 링크', p + '.deck', { ph: 'https://', hint: '‘브랜드 소개서 보기’ 버튼으로 연결돼요.' }) + '</div>' +
+    '<div class="grid2">' + fld('브랜드 홈페이지', p + '.url', { ph: 'https://', hint: '‘브랜드 홈페이지 바로가기’ 버튼으로 연결돼요.' }) + fld('브랜드 소개서 링크 (선택)', p + '.deck', { ph: 'https://', hint: '넣으면 ‘브랜드 소개서 보기’ 버튼이 함께 보여요.' }) + '</div>' +
     '<div class="f"><span class="flabel">로고 이미지</span><div class="logo-f"><span class="bmono md">' + mono(b) + '</span><div class="logo-btns"><div class="pane-tools"><button type="button" class="btn-sm" data-act="logo-up">' + (b.logo ? '로고 바꾸기' : '로고 올리기') + '</button>' + (b.logo ? '<button type="button" class="btn-sm danger" data-act="logo-rm">로고 빼기</button>' : '') + '</div>' +
       '<input type="file" id="logo-in" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden><p class="hint">정사각형에 가까운 PNG를 추천해요. 없으면 브랜드 이름 첫 글자로 보여요.</p></div></div></div>' +
-    '<div class="f"><label for="f-intro">브랜드 소개</label><textarea id="f-intro" class="intro-ta" data-path="' + p + '.intro" rows="8" placeholder="브랜드 철학, 대표 제품, 크리에이터에게 전하고 싶은 이야기를 써 주세요.">' + esc(b.intro || '') + '</textarea><p class="hint">빈 줄로 문단을 나눠요. 아티클처럼 - 목록, **굵게**, [글자](https://링크)를 쓸 수 있어요.</p></div>' +
+    '<div class="f"><label for="f-intro">브랜드 소개 (선택)</label><textarea id="f-intro" class="intro-ta" data-path="' + p + '.intro" rows="5" placeholder="브랜드 철학, 대표 제품, 크리에이터에게 전하고 싶은 이야기를 써 주세요.">' + esc(b.intro || '') + '</textarea><p class="hint">빈 줄로 문단을 나눠요. 아티클처럼 - 목록, **굵게**, [글자](https://링크)를 쓸 수 있어요.</p></div>' +
     '<div class="sub-h-row"><h2 class="sub-h">제품별 콘텐츠 가이드 ' + ps.length + '개</h2><button type="button" class="btn-sm solid" data-act="add-prod" data-id="' + esc(b.id) + '">' + PLUS + '제품 가이드 추가</button></div>' +
     (ps.length ? '<div class="rows">' + ps.map(function (q, j) {
       return '<div class="row2"><button type="button" class="row" data-act="sel" data-kind="prod" data-id="' + esc(q.id) + '"><span><b>' + esc(q.name || '제품 가이드') + '</b><small>' + (safeUrl(q.link) ? '가이드 링크 있음' : '가이드 링크 없음') + ', 최종 업데이트 ' + esc(q.updated || '-') + '</small></span>' + (prodChanged(q, b, j) ? DOT : '') + CHEV + '</button>' +
