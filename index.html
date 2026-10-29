@@ -438,6 +438,19 @@ footer a{text-decoration:none;color:#D0D0D0}
 .ap-done h2{margin:0 0 10px;font-size:22px}
 .ap-done p{margin:0 0 22px;color:var(--muted)}
 @media (max-width:600px){.ap-grid{grid-template-columns:minmax(0,1fr)}.ap-grp{flex-direction:column;gap:6px}.ap-gname{width:auto;padding-top:0}.ap-submit{width:100%}}
+.lock.gh{max-width:560px;text-align:left;justify-items:stretch}
+.lock.gh h1{text-align:left}
+.gh-form{display:flex;gap:8px;flex-wrap:wrap}
+.gh-form input{flex:1;min-width:220px;height:48px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-size:15px;background:var(--bg);color:var(--ink)}
+.gh-form input:focus{outline:none;border-color:var(--ink)}
+.gh-err{margin:0;color:#B42318;font-size:14px}
+.gh-how{border:1px solid var(--line);border-radius:14px;padding:4px 18px 14px;font-size:14px;line-height:1.75}
+.gh-how summary{cursor:pointer;font-weight:700;padding:12px 0;list-style:revert}
+.gh-how ol{margin:0 0 10px;padding-left:20px}
+.gh-how li{margin-bottom:6px}
+.gh-how p{margin:0;color:var(--muted);font-size:13px}
+.lock.gh .gh-how a{display:inline;min-height:0;padding:0;border-radius:0;background:none;color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.lock-btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:12px;border:0;background:var(--ink);color:var(--bg);font-size:15px;font-weight:700;cursor:pointer}
 /* refined editorial body (overrides) */
 .body strong{box-shadow:none;font-weight:700}
 .body{counter-reset:sec}
@@ -675,7 +688,7 @@ footer a{text-decoration:none;color:#D0D0D0}
  "steps": [
   {
    "title": "가입하고 적립금 받기",
-   "desc": "하울로 가입 후 카카오 채널로 회원ID를 남겨 주세요. 쇼핑 지원금을 드려요!",
+   "desc": "하울로 가입 후 카카오 채널로 회원ID를 남겨 주세요. 적립금을 드려요!",
    "link": "#c-start"
   },
   {
@@ -756,8 +769,8 @@ footer a{text-decoration:none;color:#D0D0D0}
     {
      "id": "a04",
      "title": "적립금은 얼마나 받을 수 있나요?",
-     "body": "하울로에 참여가 확정되면, 크리에이터님의 채널 규모에 맞춰 **쇼핑 적립금**을 드려요. 담당자가 확인한 뒤 하울로몰 회원 계정으로 바로 넣어 드려요.\n\n| 적립금 | 인스타그램 팔로워 | 유튜브 구독자 |\n| --- | --- | --- |\n| 20만 원 | 1만 미만 | 5천 미만 |\n| 30만 원 | 1만 이상 ~ 3만 미만 | 5천 이상 ~ 1만 미만 |\n| 40만 원 | 3만 이상 ~ 5만 미만 | 1만 이상 ~ 3만 미만 |\n| 50만 원 | 5만 이상 | 3만 이상 |\n\n- 인스타그램과 유튜브를 모두 운영하신다면, 둘 중 **더 높은 구간**으로 적용해 드려요.\n- 하울로가 처음 연락드린 계정, 즉 **콘텐츠를 올려 주실 채널**을 기준으로 해요.\n- 적립금은 최대 **50만 원**까지 드려요.\n\n> 참고: 적립금 1회 지급마다 콘텐츠 1개를 함께 만들어 주시면 돼요.",
-     "updated": "2026.10.27"
+     "body": "하울로에 참여가 확정되면, 크리에이터님의 채널 규모에 맞춰 **적립금**을 드려요. 담당자가 확인한 뒤 하울로몰 회원 계정으로 바로 넣어 드려요.\n\n| 적립금 | 인스타그램 팔로워 | 유튜브 구독자 |\n| --- | --- | --- |\n| 20만 원 | 1만 미만 | 5천 미만 |\n| 30만 원 | 1만 이상 ~ 3만 미만 | 5천 이상 ~ 1만 미만 |\n| 40만 원 | 3만 이상 ~ 5만 미만 | 1만 이상 ~ 3만 미만 |\n| 50만 원 | 5만 이상 | 3만 이상 |\n\n- 인스타그램과 유튜브를 모두 운영하셔도, 하울로가 **처음 연락드린 계정**(콘텐츠를 올려 주실 채널) 하나를 기준으로 해요.\n- 적립금은 최대 **50만 원**까지 드려요.\n\n> 참고: 적립금 1회 지급마다 콘텐츠 1개를 함께 만들어 주시면 돼요.",
+     "updated": "2026.10.29"
     },
     {
      "id": "a05",
@@ -800,8 +813,8 @@ footer a{text-decoration:none;color:#D0D0D0}
     {
      "id": "a17",
      "title": "팔로워 주문 안내",
-     "body": "팔로워가 판매 링크로 구매한 주문도 하울로몰 기준을 따라요. 팔로워에게 질문을 받으면 참고해 주세요.\n\n| 항목 | 내용 |\n| --- | --- |\n| 발송 | 결제 후 3~5일 안에 순차 발송 |\n| 배송 기간 | 3~7일 |\n| 주문 취소 | ‘상품준비중’ 단계에서만 가능 |\n| 반품 신청 | 제품 도착일로부터 영업일 기준 7일 안 |\n| 제품 이상 시 | 반품 배송비 판매자 부담 |\n| 단순 변심 | 반품 불가 |",
-     "updated": "2026.10.27"
+     "body": "팔로워가 판매 링크로 구매한 주문도 하울로몰 기준을 따라요. 팔로워에게 질문을 받으면 참고해 주세요.\n\n| 항목 | 내용 |\n| --- | --- |\n| 발송 | 결제 후 3~5일 안에 순차 발송 |\n| 배송 기간 | 3~7일 |\n| 주문 취소 | ‘상품준비중’ 단계에서만 가능 |\n| 반품 신청 | 제품 도착일로부터 영업일 기준 7일 안 |\n| 제품 이상 시 | 반품 배송비 판매자 부담 |\n| 단순 변심 | 반품 가능 (왕복 배송비 구매자 부담) |",
+     "updated": "2026.10.29"
     }
    ]
   },
@@ -858,8 +871,8 @@ footer a{text-decoration:none;color:#D0D0D0}
     {
      "id": "a14",
      "title": "수수료 정산",
-     "body": "판매 리워드는 **한 달 단위**로 정산해요.\n\n1. 매월 1일부터 말일까지 판매 링크로 발생한 판매를 모아요.\n2. 반품·취소된 주문을 제외하고 리워드를 확정해요.\n3. **다음 달 말일**에 입금해 드려요. 예를 들어 10월 판매분은 11월 말일에 입금돼요.\n\n> 꼭 확인하세요: 정산을 받으려면 링크디 파트너스 **마이페이지**에 **신분증 사본**(주민등록번호 뒷자리 포함)과 **통장 사본**을 등록해 주셔야 해요.\n\nQ. 판매 현황은 어디서 보나요?\n링크디 파트너스 **마이페이지**에서 방문 수, 주문 건수, 리워드를 실시간으로 확인할 수 있어요.",
-     "updated": "2026.10.27"
+     "body": "판매 리워드는 **한 달 단위**로 정산해요.\n\n1. 매월 1일부터 말일까지 판매 링크로 발생한 판매를 모아요.\n2. 반품·취소된 주문을 제외하고 리워드를 확정해요.\n3. **다음 달 말일**에 입금해 드려요. 예를 들어 10월 판매분은 11월 말일에 입금돼요.\n\n> 참고: 리워드는 **사업소득**으로 처리돼서, **3.3%**(소득세 3% + 지방소득세 0.3%)를 원천징수한 뒤 입금돼요. 예를 들어 리워드가 100,000원이면 96,700원이 입금돼요.\n\n> 꼭 확인하세요: 정산을 받으려면 링크디 파트너스 **마이페이지**에 **신분증 사본**(주민등록번호 뒷자리 포함)과 **통장 사본**을 등록해 주셔야 해요.\n\nQ. 판매 현황은 어디서 보나요?\n링크디 파트너스 **마이페이지**에서 방문 수, 주문 건수, 리워드를 실시간으로 확인할 수 있어요.",
+     "updated": "2026.10.29"
     }
    ]
   },
@@ -872,8 +885,8 @@ footer a{text-decoration:none;color:#D0D0D0}
     {
      "id": "a18",
      "title": "두 채널을 운영하면 적립금이 합산되나요?",
-     "body": "합산되지 않아요. 두 채널 중 더 높은 구간 하나가 적용돼요.",
-     "updated": "2026.10.22"
+     "body": "합산되지 않아요. 하울로가 **처음 연락드린 계정**(콘텐츠를 올려 주실 채널) 하나를 기준으로 적용돼요.",
+     "updated": "2026.10.29"
     },
     {
      "id": "a19",
@@ -1297,7 +1310,7 @@ function inline(s) {
   s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, t, u) { var h = safeUrl(u.replace(/&amp;/g, '&')); return h ? '<a href="' + esc(h) + '"' + (/^https?:/i.test(h) ? ' target="_blank" rel="noopener"' : '') + '>' + t + '</a>' : t; });
   return s;
 }
-var IMG_LINE = /^\s*!\[([^\]]*)\]\(((?:\/_blob\/[0-9a-f]{32}|data:image\/[a-z+.-]+;base64,[A-Za-z0-9+\/=]+|\/images\/[^)\s]+|https:\/\/[^)\s]+))\)\s*$/;
+var IMG_LINE = /^\s*!\[([^\]]*)\]\(((?:\/_blob\/[0-9a-f]{32}|data:image\/[a-z+.-]+;base64,[A-Za-z0-9+\/=]+|\/images\/[^)\s]+|images\/[^)\s]+|https:\/\/[^)\s]+))\)\s*$/;
 var UL = /^\s*[-*+]\s+/, OL = /^\s*\d+[.)]\s+/, QT = /^\s*>\s?/, TB = /^\s*\|/, HD = /^\s*#{2,4}\s+/, QL = /^\s*Q[.:]\s+/;
 var CL = /^\s*(주의사항|주의|중요|꼭 확인하세요|꼭 확인|팁|TIP|Tip|참고|안내|핵심만 먼저|핵심 요약|요약)\s*[:：]\s*/;
 var CICON = {
@@ -1362,7 +1375,9 @@ function sections(d) {
 function secOn(d, k) { return sections(d).filter(function (x) { return x.key === k; })[0].on; }
 function allProducts(d) { var r = []; (d.brands || []).forEach(function (b) { (b.products || []).forEach(function (p) { r.push({ p: p, b: b }); }); }); return r; }
 function bcatOf(d, id) { return (d.brandCats || []).filter(function (c) { return c.id === id; })[0] || { id: id, name: '', ko: '' }; }
-function mono(b) { return b.logo ? '<img src="' + esc(b.logo) + '" alt="">' : '<span>' + esc((b.name || '?').slice(0, 1)) + '</span>'; }
+var PENDING = {}, PENDING_SHA = {};
+function resolveImg(p) { return PENDING[p] || p; }
+function mono(b) { return b.logo ? '<img src="' + esc(resolveImg(b.logo)) + '" alt="">' : '<span>' + esc((b.name || '?').slice(0, 1)) + '</span>'; }
 function prodHref(p) { var u = safeUrl(p.link); return u && !p.body ? esc(u) + '" target="_blank" rel="noopener' : '#p-' + esc(p.id); }
 var ARROW = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>';
 function allArticles(d) { var r = []; (d.categories || []).forEach(function (c) { (c.articles || []).forEach(function (a) { r.push({ a: a, c: c }); }); }); return r; }
@@ -1661,7 +1676,7 @@ function bind() {
       res.hidden = false;
     };
     q.addEventListener('input', run);
-    q.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); run(); var f = res.querySelector('a'); if (f) f.focus(); } });
+    q.addEventListener('keydown', function (e) { if (e.key !== 'Enter' || e.isComposing || e.keyCode === 229) return; e.preventDefault(); run(); var f = res.querySelector('a'); if (f) f.focus(); });
     document.getElementById('qgo').addEventListener('click', function () { run(); q.focus(); });
     root.querySelectorAll('.chips button').forEach(function (b) { b.addEventListener('click', function () { q.value = b.dataset.q; run(); }); });
   }
@@ -1722,7 +1737,7 @@ var LOCAL_KEY = 'haulo-admin-draft';
 var sel = { kind: 'home' }, navQuery = '', mView = 'list', pvOn = null, pvRoute = '';
 var confirmKey = '';
 var HOWTO = '<div class="howto">' +
-  '<section><h3>주소</h3><ul><li>크리에이터에게는 이 페이지의 기본 주소를 공유해요.</li><li>관리자 화면은 같은 주소 끝에 <code>#admin</code>을 붙인 주소예요. 편집 권한이 있는 계정에서만 열려요.</li></ul></section>' +
+  '<section><h3>주소</h3><ul><li>크리에이터용: <code>gbyuni.github.io/HAULO-/</code></li><li>관리자용: <code>gbyuni.github.io/HAULO-/admin/</code> (GitHub 토큰으로 로그인)</li></ul></section>' +
   '<section><h3>수정하고 게시하기</h3><ol><li>탭에서 고칠 부분을 찾아 내용을 수정해요.</li><li>수정하는 즉시 미리보기에 크리에이터 화면 그대로 보여요.</li><li><strong>게시하기</strong>를 눌러야 크리에이터 화면에 반영돼요.</li><li>마음에 들지 않으면 <strong>변경 취소</strong>로 마지막 게시 상태로 되돌려요.</li></ol></section>' +
   '<section><h3>자동 보관</h3><p>게시하지 않은 수정 내용은 이 브라우저에 자동으로 보관돼요. 창을 닫았다가 다시 열어도 이어서 작업할 수 있어요. 다른 기기나 브라우저에는 보관 내용이 넘어가지 않으니, 작업이 끝나면 꼭 게시해 주세요.</p></section>' +
   '<section><h3>아티클 관리</h3><ul><li>새 아티클: 가이드 탭에서 카테고리의 <strong>아티클 편집</strong>을 연 뒤 <strong>+ 아티클 추가</strong>를 눌러요.</li><li>순서: ▲▼로 바꿔요. 화면에도 같은 순서로 보여요.</li><li>삭제: <strong>삭제</strong>를 누르고 한 번 더 <strong>정말 삭제</strong>를 눌러요.</li><li>찾기: 위쪽 검색창에 제목이나 본문 단어를 입력해요.</li><li>아티클을 고치면 최종 업데이트 날짜가 자동으로 바뀌어요.</li><li>이미지: 본문 편집의 <strong>이미지</strong> 버튼을 누르거나, 사진을 본문 칸에 끌어다 놓거나 붙여넣어요. 큰 사진은 자동으로 줄여서 올라가요. 본문 아래 썸네일에서 <strong>본문에서 빼기</strong>로 지울 수 있어요.</li></ul></section>' +
@@ -1731,14 +1746,19 @@ var HOWTO = '<div class="howto">' +
   '<section><h3>재협업 신청서</h3><p>왼쪽 <strong>재협업 신청서</strong>에서 사용 여부, 받는 메일, 상단 문구, 개인정보 동의 문구를 바꿔요. 신청서는 공개 사이트에서만 실제로 전송되고, 처음 한 번은 받는 메일에서 확인(Activate)을 눌러야 해요.</p></section>' +
   '<section><h3>신규 업데이트</h3><p>업데이트 탭에서 <strong>+ 소식 추가</strong>를 누르면 맨 위에 오늘 날짜로 추가돼요. 오래된 소식은 삭제해 3개 안팎으로 유지하는 걸 추천해요.</p></section>' +
   '<section><h3>여러 명이 함께 관리할 때</h3><p>두 사람이 동시에 게시하면 먼저 게시한 내용이 남아요. 늦게 게시한 사람의 수정 내용은 사라지지 않고 다시 불러와지니, 확인한 뒤 다시 게시하면 돼요.</p></section>' +
-  '<section><h3>공개 사이트 반영</h3><p>크리에이터는 Claude 가이드를 볼 수 없어서, 공개 사이트(GitHub Pages)에 따로 반영해요. 게시한 뒤 왼쪽 <strong>공개 사이트로 내보내기</strong>에서 <code>index.html</code>을 내려받아 GitHub에 올리면 1~2분 뒤 반영돼요. 여러 수정을 모아 한 번에 올리면 편해요.</p></section>' +
-  '<section><h3>관리자 추가</h3><p>페이지 상단 공유 메뉴에서 팀원에게 <strong>편집 권한</strong>을 준 뒤 관리자 주소를 전달해요.</p></section>' +
+  '<section><h3>게시와 반영</h3><p><strong>게시하기</strong>를 누르면 GitHub 저장소에 바로 저장되고, 1~2분 뒤 크리에이터 화면에 반영돼요. 반영이 끝나면 알림이 떠요. 휴대폰에서 예전 화면이 보이면 새로고침해 주세요.</p></section>' +
+  '<section><h3>관리자 추가</h3><ol><li>저장소 주인(gbyuni)이 GitHub 저장소 <strong>Settings → Collaborators → Add people</strong>에서 팀원의 GitHub 계정을 초대해요.</li><li>팀원은 메일로 온 초대를 수락하고, 관리자 화면의 안내대로 토큰을 만들어 로그인해요.</li></ol><p>토큰은 무료이고, 기간이 지나면 같은 방법으로 새로 만들면 돼요.</p></section>' +
   '</div>';
 
 function fmtTime(iso) { var t = new Date(iso); if (isNaN(t)) return ''; return t.getFullYear() + '.' + String(t.getMonth() + 1).padStart(2, '0') + '.' + String(t.getDate()).padStart(2, '0') + ' ' + String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0'); }
 function fresh() { draft = JSON.parse(JSON.stringify(DATA)); draft.chipsText = (draft.chips || []).join(', '); }
 function syncChips() { if (typeof draft.chipsText === 'string') draft.chips = draft.chipsText.split(',').map(function (s) { return s.trim(); }).filter(Boolean); }
-function previewData() { syncChips(); var d = JSON.parse(JSON.stringify(draft)); delete d.chipsText; d._preview = pvRoute; return d; }
+function previewData() {
+  syncChips(); var d = JSON.parse(JSON.stringify(draft)); delete d.chipsText; d._preview = pvRoute;
+  var ks = Object.keys(PENDING); if (!ks.length) return d;
+  var s = JSON.stringify(d); ks.forEach(function (k) { s = s.split('(' + k + ')').join('(' + PENDING[k] + ')').split('"' + k + '"').join('"' + PENDING[k] + '"'); });
+  return JSON.parse(s);
+}
 function keepLocal() {
   try {
     if (dirty && draft) localStorage.setItem(LOCAL_KEY, JSON.stringify({ base: DATA.rev, at: new Date().toISOString(), draft: draft }));
@@ -1824,6 +1844,7 @@ var EYE = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 
 /* --- shell --- */
 function renderAdmin(msg) {
   if (authState !== 'ok') {
+    if (GHMODE && authState !== 'checking') { root.innerHTML = '<header class="ad-top"><div class="brandx"><img class="logo" src="' + LOGO + '" alt="haulo" width="68" height="24"><b>가이드 관리자</b></div><nav class="ad-actions"><a class="btn-ghost" href="#">크리에이터 화면 보기</a></nav></header>' + ghLockHTML(msg); var tk = document.getElementById('gh-tk'); if (tk) tk.focus(); return; }
     root.innerHTML = '<header class="ad-top"><div class="brandx"><img class="logo" src="' + LOGO + '" alt="haulo" width="68" height="24"><b>가이드 관리자</b></div><nav class="ad-actions"><a class="btn-ghost" href="#">크리에이터 화면 보기</a></nav></header>' +
       '<main class="lock">' + (authState === 'checking'
       ? '<h1>권한을 확인하고 있어요</h1><p>잠시만 기다려 주세요.</p>'
@@ -1838,7 +1859,7 @@ function renderAdmin(msg) {
     '<nav class="ad-actions" aria-label="관리자 메뉴">' +
       '<a class="btn-ghost hide-s" href="#">크리에이터 화면 보기</a>' +
       '<button type="button" class="btn-ghost" data-act="pv" id="pv-toggle" aria-pressed="false">' + EYE + '<span class="hide-s">미리보기</span></button>' +
-      '<button type="button" class="btn-ghost hide-s" data-act="sel" data-kind="export">공개 사이트로 내보내기</button>' +
+      (GHMODE ? '<button type="button" class="btn-ghost hide-s" data-act="gh-logout">로그아웃</button>' : '<button type="button" class="btn-ghost hide-s" data-act="sel" data-kind="export">공개 사이트로 내보내기</button>') +
       '<button type="button" class="btn-ghost hide-s" data-act="revert" id="btn-revert">변경 취소</button>' +
       '<button type="button" class="btn-primary" data-act="publish" id="btn-pub">게시하기</button>' +
     '</nav></header>' +
@@ -1910,7 +1931,7 @@ function refreshNav() {
     if (rows) html += '<div class="nav-sub">' + esc(bc.name) + '</div>' + rows;
   });
   if (term && !any) html += '<p class="nav-none">‘' + esc(navQuery) + '’에 맞는 항목이 없어요.</p>';
-  html += '</div><div class="nav-group">' + navItem('export', '', '공개 사이트로 내보내기', 'link', false) + navItem('help', '', '도움말', 'help', false) + '</div>';
+  html += '</div><div class="nav-group">' + (GHMODE ? '' : navItem('export', '', '공개 사이트로 내보내기', 'link', false)) + navItem('help', '', '도움말', 'help', false) + (GHMODE ? '<button type="button" class="nav-item" data-act="gh-logout">' + icon('user') + '<span>로그아웃' + (ghUser ? ' (' + esc(ghUser) + ')' : '') + '</span></button>' : '') + '</div>';
   el.innerHTML = html;
 }
 function navItem(kind, id, label, ic, changed, count, off) {
@@ -2167,12 +2188,12 @@ function routeForSel() { return sel.kind === 'art' ? sel.id : sel.kind === 'cat'
 function changed() { dirty = countChanges() > 0; leaveOk = false; refreshNav(); refreshTop(); preview(); }
 
 /* --- images --- */
-var assetsApi = null, IMG_RE = /^\s*!\[([^\]]*)\]\((\/_blob\/([0-9a-f]{32}))\)\s*$/;
+var assetsApi = null, IMG_RE = /^\s*!\[([^\]]*)\]\(((?:\/_blob\/[0-9a-f]{32}|images\/[^)\s]+))\)\s*$/;
 function imgStrip(body) {
   var found = String(body || '').split('\n').map(function (l) { return l.match(IMG_RE); }).filter(Boolean);
   if (!found.length) return '';
   return '<p class="imgs-h">본문 속 이미지 ' + found.length + '개</p><div class="imgs">' + found.map(function (m) {
-    return '<figure><img src="' + m[2] + '" alt=""><figcaption>' + esc(m[1] || '설명 없음') + '</figcaption><button type="button" data-act="img-rm" data-id="' + m[3] + '">본문에서 빼기</button></figure>';
+    return '<figure><img src="' + esc(resolveImg(m[2])) + '" alt=""><figcaption>' + esc(m[1] || '설명 없음') + '</figcaption><button type="button" data-act="img-rm" data-id="' + esc(m[2]) + '">본문에서 빼기</button></figure>';
   }).join('') + '</div>';
 }
 function updateStrip() { var s = document.getElementById('img-strip'), ta = document.getElementById('body-ta'); if (s && ta) s.innerHTML = imgStrip(ta.value); }
@@ -2200,11 +2221,19 @@ function insertAtCursor(text) {
 function uploadImages(files) {
   files = Array.prototype.filter.call(files || [], function (f) { return /^image\//.test(f.type); });
   if (!files.length) return;
-  if (!assetsApi) return toast('이 화면에서는 이미지를 올릴 수 없어요. 편집 권한이 있는 계정인지 확인해 주세요.');
+  if (!GHMODE && !assetsApi) return toast('이 화면에서는 이미지를 올릴 수 없어요. 편집 권한이 있는 계정인지 확인해 주세요.');
   var done = 0;
   (function next() {
     var f = files.shift(); if (!f) return toast(done ? '이미지 ' + done + '개를 넣었어요. 게시해야 크리에이터 화면에 보여요.' : '');
     toast('이미지를 올리는 중이에요…');
+    if (GHMODE) {
+      var bref;
+      shrink(f).then(function (b) { bref = b; return ghBlobImage(b); }).then(function (r) {
+        var path = ghImgName(f, bref); PENDING[path] = r.data; PENDING_SHA[path] = r.sha;
+        insertAtCursor('![](' + path + ')'); done++; next();
+      }).catch(function (err) { toast('이미지를 올리지 못했어요. 다시 시도해 주세요. (' + ((err && err.status) || '오류') + ')'); });
+      return;
+    }
     shrink(f).then(function (b) { return assetsApi.upload(b); }).then(function (r) {
       var id = (r && r.id) || ''; if (!/^[0-9a-f]{32}$/.test(id)) { var mm = String(r && r.url || '').match(/[0-9a-f]{32}/); id = mm ? mm[0] : ''; }
       if (!id) throw { code: 'no_id' };
@@ -2304,10 +2333,10 @@ function onAdminClick(e) {
   if (act === 'publish') return doPublish(t);
   if (act === 'revert') { dirty = false; fresh(); keepLocal(); if ((sel.kind === 'art' && !findArt(sel.id)) || (sel.kind === 'cat' && !findCat(sel.id)) || (sel.kind === 'brand' && !findBrand(sel.id)) || (sel.kind === 'prod' && !findProd(sel.id))) sel = { kind: 'home' }; pvRoute = routeForSel(); drawEditor('변경 내용을 모두 되돌렸어요. 마지막 게시 상태예요.'); preview(); return; }
   if (act === 'fmt') return applyFmt(t.dataset.k);
-  if (act === 'img') { if (!assetsApi) return toast('이 화면에서는 이미지를 올릴 수 없어요. 편집 권한이 있는 계정인지 확인해 주세요.'); return document.getElementById('img-in').click(); }
+  if (act === 'img') { if (!GHMODE && !assetsApi) return toast('이 화면에서는 이미지를 올릴 수 없어요. 편집 권한이 있는 계정인지 확인해 주세요.'); return document.getElementById('img-in').click(); }
   if (act === 'img-rm') {
     var ta = document.getElementById('body-ta'); if (!ta) return;
-    ta.value = ta.value.split('\n').filter(function (l) { return l.indexOf('/_blob/' + t.dataset.id) < 0; }).join('\n').replace(/\n{3,}/g, '\n\n');
+    ta.value = ta.value.split('\n').filter(function (l) { return l.indexOf('(' + t.dataset.id + ')') < 0; }).join('\n').replace(/\n{3,}/g, '\n\n');
     ta.dispatchEvent(new Event('input', { bubbles: true })); return toast('본문에서 이미지를 뺐어요.');
   }
   if (act === 'icon') { setPath(draft, t.dataset.path, t.dataset.val); renderMain(); return changed(); }
@@ -2318,6 +2347,7 @@ function onAdminClick(e) {
     return toast(s.on ? '‘' + nm + '’ 영역을 홈 화면에 보여줘요. 게시하면 반영돼요.' : '‘' + nm + '’ 영역을 홈 화면에서 숨겨요. 내용은 그대로 남아 있어요.');
   }
   if (act === 'export') return exportPublic(t);
+  if (act === 'gh-logout') { if (dirty) keepLocal(); ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} authState = 'login'; draft = null; dirty = false; ghErr = ''; return renderAdmin('로그아웃했어요.'); }
   if (act === 'apply-toggle') { draft.apply = draft.apply || {}; draft.apply.on = draft.apply.on === false; renderMain(); changed(); return toast(draft.apply.on ? '재협업 신청 페이지를 사용해요. 게시하면 반영돼요.' : '재협업 신청 페이지를 숨겨요. 게시하면 반영돼요.'); }
   if (act === 'sec-move') {
     var all = sections(draft), mv = all.filter(function (x) { return x.key !== 'voice'; }), vo = all.filter(function (x) { return x.key === 'voice'; });
@@ -2338,7 +2368,7 @@ function onAdminClick(e) {
     var pt2 = document.getElementById('f-title'); if (pt2) pt2.focus(); return;
   }
   if (act === 'bcat-add') { (draft.brandCats = draft.brandCats || []).push({ id: rid('k'), name: 'NEW', ko: '' }); renderMain(); return changed(); }
-  if (act === 'logo-up') { if (!assetsApi) return toast('이 화면에서는 이미지를 올릴 수 없어요. 편집 권한이 있는 계정인지 확인해 주세요.'); return document.getElementById('logo-in').click(); }
+  if (act === 'logo-up') { if (!GHMODE && !assetsApi) return toast('이 화면에서는 이미지를 올릴 수 없어요. 편집 권한이 있는 계정인지 확인해 주세요.'); return document.getElementById('logo-in').click(); }
   if (act === 'logo-rm') { var rl = findBrand(sel.id); if (rl) { rl.b.logo = ''; renderMain(); changed(); } return; }
   if (act === 'quick-art') { var c0 = (draft.categories || [])[0]; if (!c0) return toast('먼저 카테고리를 추가해 주세요.'); sel = { kind: 'cat', id: c0.id }; mView = 'edit'; renderMain(); refreshNav(); layout(); return toast('카테고리를 고른 뒤 ‘아티클 추가’를 눌러 주세요.'); }
   if (act === 'add-cat') {
@@ -2391,6 +2421,14 @@ root.addEventListener('change', function (e) {
 });
 function uploadLogo(f) {
   var r = findBrand(sel.id); if (!f || !r) return;
+  if (GHMODE) {
+    toast('로고를 올리는 중이에요…'); var lref;
+    (f.type === 'image/svg+xml' ? Promise.resolve(f) : shrink(f)).then(function (bl) { lref = bl; return ghBlobImage(bl); }).then(function (res) {
+      var path = ghImgName(f, lref, 'logo-'); PENDING[path] = res.data; PENDING_SHA[path] = res.sha;
+      r.b.logo = path; renderMain(); changed(); toast('로고를 넣었어요. 게시하면 크리에이터 화면에 보여요.');
+    }).catch(function (err) { toast('로고를 올리지 못했어요. (' + ((err && err.status) || '오류') + ')'); });
+    return;
+  }
   if (!assetsApi) return toast('이 화면에서는 이미지를 올릴 수 없어요. 편집 권한이 있는 계정인지 확인해 주세요.');
   toast('로고를 올리는 중이에요…');
   (f.type === 'image/svg+xml' ? Promise.resolve(f) : shrink(f)).then(function (bl) { return assetsApi.upload(bl); }).then(function (res) {
@@ -2409,11 +2447,12 @@ function buildPage(data) {
 }
 var DRAFT_KEY = 'haulo-guide-draft';
 function doPublish(btn) {
-  if (!artifactApi) return drawEditor('이 화면에서는 게시할 수 없어요.');
+  if (!GHMODE && !artifactApi) return drawEditor('이 화면에서는 게시할 수 없어요.');
   syncChips();
   var next = JSON.parse(JSON.stringify(draft)); delete next.chipsText; delete next._preview;
   next.rev = Math.random().toString(36).slice(2, 10);
   next.publishedAt = new Date().toISOString();
+  if (GHMODE) { btn.disabled = true; adminMsg('게시하는 중이에요…'); return ghPublish(next, btn); }
   try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ rev: next.rev, data: next })); } catch (e) {}
   btn.disabled = true; adminMsg('게시하는 중이에요…');
   var tries = 0;
@@ -2429,12 +2468,119 @@ function doPublish(btn) {
   })();
 }
 
+/* ---------- GitHub mode: token login, save straight to the repository ---------- */
+var GH = { owner: 'gbyuni', repo: 'HAULO-', branch: 'main' };
+var GHMODE = !(window.claude && typeof window.claude.use === 'function');
+var TK_KEY = 'haulo-gh-token', ghToken = '', ghBaseSha = '', ghUser = '', ghErr = '';
+try { ghToken = localStorage.getItem(TK_KEY) || ''; } catch (e) {}
+function ghFetch(url, opts) {
+  opts = opts || {};
+  return fetch(url, { method: opts.method || 'GET', body: opts.body, headers: { Authorization: 'Bearer ' + ghToken, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' } })
+    .then(function (r) { if (!r.ok) return r.text().then(function (t) { throw { status: r.status, body: t }; }); return r.status === 204 ? null : r.json(); });
+}
+function ghApi(path, opts) { return ghFetch('https://api.github.com/repos/' + GH.owner + '/' + GH.repo + path, opts); }
+function b64utf8(s) { var bin = atob(String(s).replace(/\s/g, '')), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new TextDecoder().decode(u); }
+function ghLoad() {
+  return ghApi('/contents/index.html?ref=' + GH.branch + '&t=' + Date.now()).then(function (f) {
+    var html = b64utf8(f.content), m = html.match(/id="guide-data">([\s\S]*?)<\/script>/);
+    if (!m) throw { status: 'parse' };
+    ghBaseSha = f.sha; return JSON.parse(m[1]);
+  });
+}
+function ghLockHTML(msg) {
+  var how = '<details class="gh-how"' + (ghToken ? '' : ' open') + '><summary>토큰 만드는 방법 (처음 한 번, 약 3분)</summary><ol>' +
+    '<li>먼저 저장소 주인에게 <b>공동 작업자(Collaborator) 초대</b>를 받고, 메일로 온 초대를 수락해 주세요.</li>' +
+    '<li>GitHub에 로그인한 상태에서 <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=HAULO%20guide%20admin" target="_blank" rel="noopener">토큰 만들기 화면</a>을 열어요.</li>' +
+    '<li><b>public_repo</b>에 체크되어 있는지 확인하고, Expiration(유효 기간)은 <b>90 days</b>를 추천해요.</li>' +
+    '<li>맨 아래 <b>Generate token</b>을 누르고, 나온 토큰(ghp_로 시작)을 복사해 위 칸에 붙여넣어요.</li></ol>' +
+    '<p>토큰은 비밀번호와 같아요. 다른 사람과 공유하지 말아 주세요. 기간이 지나면 같은 방법으로 새로 만들면 돼요.</p></details>';
+  return '<main class="lock gh">' + (authState === 'loading' ? '<h1>가이드 내용을 불러오고 있어요</h1><p>잠시만 기다려 주세요.</p>' :
+    '<h1>관리자 로그인</h1><p>GitHub 토큰으로 로그인해요. 한 번 로그인하면 이 브라우저에서는 계속 로그인돼요.</p>' +
+    '<form id="gh-login" class="gh-form"><label for="gh-tk" class="sr">GitHub 토큰</label><input id="gh-tk" type="password" autocomplete="off" spellcheck="false" placeholder="ghp_로 시작하는 토큰을 붙여넣으세요"><button type="submit" class="lock-btn">로그인</button></form>' +
+    (msg || ghErr ? '<p class="gh-err" role="alert">' + esc(msg || ghErr) + '</p>' : '') + how) + '</main>';
+}
+function ghAuth() {
+  if (!adminMode || IS_PREVIEW) return;
+  if (authState === 'ok' || authState === 'loading') return;
+  if (!ghToken) { authState = 'login'; return renderAdmin(); }
+  authState = 'loading'; renderAdmin();
+  ghFetch('https://api.github.com/user').then(function (u) { ghUser = u.login || ''; return ghApi(''); }).then(function (repo) {
+    if (!repo.permissions || !repo.permissions.push) throw { status: 'perm' };
+    return ghLoad();
+  }).then(function (data) {
+    DATA = data; view = DATA; draft = null; dirty = false; authState = 'ok'; ghErr = '';
+    var msg = '', local = null;
+    try { local = JSON.parse(localStorage.getItem(LOCAL_KEY) || 'null'); } catch (e) {}
+    if (local && local.base === DATA.rev && local.draft) { draft = local.draft; dirty = true; msg = '게시하지 않은 수정 내용(' + fmtTime(local.at) + ' 보관)을 불러왔어요.'; }
+    else if (local) { try { localStorage.removeItem(LOCAL_KEY); } catch (e) {} if (local.draft) msg = '보관된 수정 내용이 있었지만, 그 사이 다른 관리자가 게시해서 정리했어요.'; }
+    renderAdmin(msg);
+  }).catch(function (err) {
+    var s = err && err.status;
+    if (s === 401) { ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} ghErr = '토큰이 올바르지 않거나 만료됐어요. 새 토큰을 만들어 다시 로그인해 주세요.'; }
+    else if (s === 'perm' || s === 404 || s === 403) ghErr = '이 계정에는 가이드 저장소 편집 권한이 없어요. 공동 작업자 초대를 수락했는지, 토큰에 public_repo가 체크됐는지 확인해 주세요.';
+    else ghErr = '불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요. (' + (s || '오류') + ')';
+    authState = 'login'; renderAdmin();
+  });
+}
+root.addEventListener('submit', function (e) {
+  if (e.target.id !== 'gh-login') return;
+  e.preventDefault();
+  var v = (document.getElementById('gh-tk').value || '').trim(); if (!v) return;
+  ghToken = v; try { localStorage.setItem(TK_KEY, v); } catch (er) {}
+  authState = 'checking'; ghAuth();
+});
+function ghBlobImage(blob) {
+  return new Promise(function (res, rej) { var fr = new FileReader(); fr.onload = function () { res(String(fr.result)); }; fr.onerror = rej; fr.readAsDataURL(blob); })
+    .then(function (dataUrl) { return ghApi('/git/blobs', { method: 'POST', body: JSON.stringify({ content: dataUrl.split(',')[1], encoding: 'base64' }) }).then(function (r) { return { sha: r.sha, data: dataUrl }; }); });
+}
+function ghImgName(file, blob, prefix) {
+  var ext = blob.type === 'image/png' ? 'png' : blob.type === 'image/webp' ? 'webp' : blob.type === 'image/gif' ? 'gif' : blob.type === 'image/svg+xml' ? 'svg' : 'jpg';
+  var base = String(file.name || 'image').replace(/\.[^.]+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 30) || 'image';
+  return 'images/' + (prefix || '') + Date.now().toString(36) + '-' + base + '.' + ext;
+}
+function ghPublish(next, btn) {
+  var html = buildPage(next), body = JSON.stringify(next), head, blobSha;
+  var imgs = Object.keys(PENDING_SHA).filter(function (p) { return body.indexOf(p) > -1; });
+  ghApi('/git/ref/heads/' + GH.branch).then(function (ref) { head = ref.object.sha; return ghApi('/contents/index.html?ref=' + head); })
+  .then(function (f) { if (f.sha !== ghBaseSha) throw { conflict: true }; return ghApi('/git/commits/' + head); })
+  .then(function (cm) {
+    return ghApi('/git/blobs', { method: 'POST', body: JSON.stringify({ content: html, encoding: 'utf-8' }) }).then(function (bl) {
+      blobSha = bl.sha;
+      return ghApi('/git/trees', { method: 'POST', body: JSON.stringify({ base_tree: cm.tree.sha, tree: [{ path: 'index.html', mode: '100644', type: 'blob', sha: bl.sha }].concat(imgs.map(function (p) { return { path: p, mode: '100644', type: 'blob', sha: PENDING_SHA[p] }; })) }) });
+    });
+  })
+  .then(function (t) { return ghApi('/git/commits', { method: 'POST', body: JSON.stringify({ message: '가이드 수정 (' + (ghUser || '관리자') + ')', tree: t.sha, parents: [head] }) }); })
+  .then(function (c) { return ghApi('/git/refs/heads/' + GH.branch, { method: 'PATCH', body: JSON.stringify({ sha: c.sha }) }); })
+  .then(function () {
+    ghBaseSha = blobSha; imgs.forEach(function (p) { delete PENDING_SHA[p]; });
+    DATA = next; view = DATA; dirty = false; try { localStorage.removeItem(LOCAL_KEY); } catch (e) {}
+    fresh(); drawEditor('게시했어요. 1~2분 뒤 크리에이터 화면에 반영돼요.'); preview(); ghWatch(next.rev);
+  })
+  .catch(function (err) {
+    btn.disabled = false;
+    if (err && err.conflict) { keepLocal(); return toast('다른 관리자가 먼저 게시했어요. 수정 내용은 이 브라우저에 보관했으니, 새로고침해서 최신 내용을 확인한 뒤 다시 반영해 주세요.'); }
+    if (err && err.status === 401) { ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} keepLocal(); authState = 'login'; ghErr = '토큰이 만료됐어요. 새 토큰으로 다시 로그인해 주세요. 수정 내용은 보관해 두었어요.'; return renderAdmin(); }
+    toast('게시하지 못했어요. 잠시 후 다시 시도해 주세요. (' + ((err && err.status) || '오류') + ')');
+  });
+}
+function ghWatch(rev) {
+  var tries = 0;
+  (function poll() {
+    fetch(location.pathname + '?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); }).catch(function () { return ''; }).then(function (t) {
+      if (t.indexOf(rev) > -1) return toast('크리에이터 화면에 반영됐어요.');
+      if (++tries > 40) return toast('반영이 늦어지고 있어요. 저장소의 Actions 화면에서 배포 상태를 확인해 주세요.');
+      setTimeout(poll, 6000);
+    });
+  })();
+}
+
 /* ---------- start ---------- */
 var saved = null;
 try { saved = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) {}
-if (saved && !IS_PREVIEW && !DATA._public) { adminMode = true; if (location.hash !== '#admin') history.replaceState(null, '', '#admin'); }
+if (saved && !IS_PREVIEW && !DATA._public && !GHMODE) { adminMode = true; if (location.hash !== '#admin') history.replaceState(null, '', '#admin'); }
 render();
 function checkAuth() {
+  if (GHMODE) return ghAuth();
   if (!adminMode || IS_PREVIEW || authState !== 'checking') return;
   if (!(window.claude && typeof window.claude.use === 'function')) { authState = 'no'; return renderAdmin(); }
   var timer = setTimeout(function () { if (authState === 'checking') { authState = 'no'; renderAdmin(); } }, 12000);
