@@ -1916,7 +1916,7 @@ var LOCAL_KEY = 'haulo-admin-draft';
 var sel = { kind: 'home' }, navQuery = '', mView = 'list', pvOn = null, pvRoute = '';
 var confirmKey = '';
 var HOWTO = '<div class="howto">' +
-  '<section><h3>주소</h3><ul><li>크리에이터용: <code>gbyuni.github.io/HAULO-/</code></li><li>관리자용: <code>gbyuni.github.io/HAULO-/admin/</code> (GitHub 토큰으로 로그인)</li></ul></section>' +
+  '<section><h3>주소</h3><ul><li>크리에이터용: <code>haulocreators.netlify.app</code></li><li>관리자용: <code>haulocreators.netlify.app/admin/</code> (팀 이메일 계정으로 로그인)</li></ul></section>' +
   '<section><h3>수정하고 게시하기</h3><ol><li>탭에서 고칠 부분을 찾아 내용을 수정해요.</li><li>수정하는 즉시 미리보기에 크리에이터 화면 그대로 보여요.</li><li><strong>게시하기</strong>를 눌러야 크리에이터 화면에 반영돼요.</li><li>마음에 들지 않으면 <strong>변경 취소</strong>로 마지막 게시 상태로 되돌려요.</li></ol></section>' +
   '<section><h3>자동 보관</h3><p>게시하지 않은 수정 내용은 이 브라우저에 자동으로 보관돼요. 창을 닫았다가 다시 열어도 이어서 작업할 수 있어요. 다른 기기나 브라우저에는 보관 내용이 넘어가지 않으니, 작업이 끝나면 꼭 게시해 주세요.</p></section>' +
   '<section><h3>아티클 관리</h3><ul><li>새 아티클: 가이드 탭에서 카테고리의 <strong>아티클 편집</strong>을 연 뒤 <strong>+ 아티클 추가</strong>를 눌러요.</li><li>순서: ▲▼로 바꿔요. 화면에도 같은 순서로 보여요.</li><li>삭제: <strong>삭제</strong>를 누르고 한 번 더 <strong>정말 삭제</strong>를 눌러요.</li><li>찾기: 위쪽 검색창에 제목이나 본문 단어를 입력해요.</li><li>아티클을 고치면 최종 업데이트 날짜가 자동으로 바뀌어요.</li><li>이미지: 본문 편집의 <strong>이미지</strong> 버튼을 누르거나, 사진을 본문 칸에 끌어다 놓거나 붙여넣어요. 큰 사진은 자동으로 줄여서 올라가요. 본문 아래 썸네일에서 <strong>본문에서 빼기</strong>로 지울 수 있어요.</li></ul></section>' +
@@ -2501,6 +2501,7 @@ function onAdminClick(e) {
   if (!adminMode) return;
   var t = e.target.closest('[data-act]'); if (!t || !root.contains(t)) return;
   var act = t.dataset.act;
+  if (act === 'nl-login') { nlWidget().then(function (ni) { ni.open('login'); }).catch(function () { ghErr = '로그인 창을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'; renderAdmin(); }); return; }
   if (act !== 'del' && confirmKey) { confirmKey = ''; }
   if (act === 'sel') {
     sel = { kind: t.dataset.kind, id: t.dataset.id };
@@ -2527,7 +2528,7 @@ function onAdminClick(e) {
     return toast(s.on ? '‘' + nm + '’ 영역을 홈 화면에 보여줘요. 게시하면 반영돼요.' : '‘' + nm + '’ 영역을 홈 화면에서 숨겨요. 내용은 그대로 남아 있어요.');
   }
   if (act === 'export') return exportPublic(t);
-  if (act === 'gh-logout') { if (dirty) keepLocal(); ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} authState = 'login'; draft = null; dirty = false; ghErr = ''; return renderAdmin('로그아웃했어요.'); }
+  if (act === 'gh-logout') { if (dirty) keepLocal(); if (NLMODE && window.netlifyIdentity) { authState = 'login'; try { window.netlifyIdentity.logout(); } catch (er) {} } ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} authState = 'login'; draft = null; dirty = false; ghErr = ''; return renderAdmin('로그아웃했어요.'); }
   if (act === 'apply-toggle') { draft.apply = draft.apply || {}; draft.apply.on = draft.apply.on === false; renderMain(); changed(); return toast(draft.apply.on ? '재협업 신청 페이지를 사용해요. 게시하면 반영돼요.' : '재협업 신청 페이지를 숨겨요. 게시하면 반영돼요.'); }
   if (act === 'sec-move') {
     var all = sections(draft), mv = all.filter(function (x) { return x.key !== 'voice'; }), vo = all.filter(function (x) { return x.key === 'voice'; });
@@ -2651,23 +2652,56 @@ function doPublish(btn) {
 /* ---------- GitHub mode: token login, save straight to the repository ---------- */
 var GH = { owner: 'gbyuni', repo: 'HAULO-', branch: 'main' };
 var GHMODE = !(window.claude && typeof window.claude.use === 'function');
+/* Netlify mode: on the Netlify address, log in with the team's Netlify Identity email accounts and save through Git Gateway */
+var NLMODE = GHMODE && /(^|\.)netlify\.app$/.test(location.hostname);
+var nlLoading = null;
+function nlWidget() {
+  if (nlLoading) return nlLoading;
+  nlLoading = new Promise(function (res, rej) {
+    function ready() {
+      var ni = window.netlifyIdentity; if (!ni) return rej({ status: 'widget' });
+      ni.on('login', function () { ni.close(); if (adminMode && authState !== 'ok') { authState = 'checking'; ghAuth(); } });
+      ni.on('logout', function () { if (authState === 'ok') { authState = 'login'; draft = null; dirty = false; renderAdmin('로그아웃했어요.'); } });
+      var done = false; ni.on('init', function () { if (!done) { done = true; res(ni); } });
+      try { ni.init(); } catch (e) {}
+      setTimeout(function () { if (!done) { done = true; res(ni); } }, 4000);
+    }
+    if (window.netlifyIdentity) return ready();
+    var sc = document.createElement('script'); sc.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+    sc.onload = ready; sc.onerror = function () { rej({ status: 'widget' }); }; document.head.appendChild(sc);
+  });
+  return nlLoading;
+}
+function nlJwt() {
+  return nlWidget().then(function (ni) { var u = ni.currentUser(); if (!u) throw { status: 401 }; return u.jwt(); });
+}
+if (NLMODE && /(invite|recovery|confirmation|email_change)_token=/.test(location.hash)) nlWidget();
 var TK_KEY = 'haulo-gh-token', ghToken = '', ghBaseSha = '', ghUser = '', ghErr = '';
 try { ghToken = localStorage.getItem(TK_KEY) || ''; } catch (e) {}
 function ghFetch(url, opts) {
   opts = opts || {};
-  return fetch(url, { method: opts.method || 'GET', body: opts.body, headers: { Authorization: 'Bearer ' + ghToken, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' } })
-    .then(function (r) { if (!r.ok) return r.text().then(function (t) { throw { status: r.status, body: t }; }); return r.status === 204 ? null : r.json(); });
+  return (NLMODE ? nlJwt() : Promise.resolve(ghToken)).then(function (tk) {
+    return fetch(url, { method: opts.method || 'GET', body: opts.body, headers: { Authorization: 'Bearer ' + tk, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' } });
+  }).then(function (r) { if (!r.ok) return r.text().then(function (t) { throw { status: r.status, body: t }; }); return r.status === 204 ? null : r.json(); });
 }
-function ghApi(path, opts) { return ghFetch('https://api.github.com/repos/' + GH.owner + '/' + GH.repo + path, opts); }
+function ghApi(path, opts) { return ghFetch((NLMODE ? '/.netlify/git/github' : 'https://api.github.com/repos/' + GH.owner + '/' + GH.repo) + path, opts); }
 function b64utf8(s) { var bin = atob(String(s).replace(/\s/g, '')), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new TextDecoder().decode(u); }
 function ghLoad() {
   return ghApi('/contents/index.html?ref=' + GH.branch + '&t=' + Date.now()).then(function (f) {
-    var html = b64utf8(f.content), m = html.match(/id="guide-data">([\s\S]*?)<\/script>/);
+    ghBaseSha = f.sha;
+    return f.content ? f.content : ghApi('/git/blobs/' + f.sha).then(function (b) { return b.content; });
+  }).then(function (c) {
+    var html = b64utf8(c), m = html.match(/id="guide-data">([\s\S]*?)<\/script>/);
     if (!m) throw { status: 'parse' };
-    ghBaseSha = f.sha; return JSON.parse(m[1]);
+    return JSON.parse(m[1]);
   });
 }
 function ghLockHTML(msg) {
+  if (NLMODE) return '<main class="lock gh">' + (authState === 'loading' ? '<h1>가이드 내용을 불러오고 있어요</h1><p>잠시만 기다려 주세요.</p>' :
+    '<h1>관리자 로그인</h1><p>팀에서 초대받은 이메일 계정으로 로그인해요. 예전 관리자 화면에서 쓰던 이메일과 비밀번호를 그대로 쓰면 돼요.</p>' +
+    '<button type="button" class="lock-btn" data-act="nl-login">이메일로 로그인</button>' +
+    (msg || ghErr ? '<p class="gh-err" role="alert">' + esc(msg || ghErr) + '</p>' : '') +
+    '<p class="gh-note">비밀번호가 기억나지 않으면 로그인 창의 <b>Forgot password?</b>를 눌러 메일로 재설정할 수 있어요. 새 관리자는 Netlify에서 초대 메일을 받아야 해요.</p>') + '</main>';
   var how = '<details class="gh-how"' + (ghToken ? '' : ' open') + '><summary>토큰 만드는 방법 (처음 한 번, 약 3분)</summary><ol>' +
     '<li>먼저 저장소 주인에게 <b>공동 작업자(Collaborator) 초대</b>를 받고, 메일로 온 초대를 수락해 주세요.</li>' +
     '<li>GitHub에 로그인한 상태에서 <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=HAULO%20guide%20admin" target="_blank" rel="noopener">토큰 만들기 화면</a>을 열어요.</li>' +
@@ -2682,6 +2716,7 @@ function ghLockHTML(msg) {
 function ghAuth() {
   if (!adminMode || IS_PREVIEW) return;
   if (authState === 'ok' || authState === 'loading') return;
+  if (NLMODE) return nlAuth();
   if (!ghToken) { authState = 'login'; return renderAdmin(); }
   authState = 'loading'; renderAdmin();
   ghFetch('https://api.github.com/user').then(function (u) { ghUser = u.login || ''; return ghApi(''); }).then(function (repo) {
@@ -2699,6 +2734,29 @@ function ghAuth() {
     if (s === 401) { ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} ghErr = '토큰이 올바르지 않거나 만료됐어요. 새 토큰을 만들어 다시 로그인해 주세요.'; }
     else if (s === 'perm' || s === 404 || s === 403) ghErr = '이 계정에는 가이드 저장소 편집 권한이 없어요. 공동 작업자 초대를 수락했는지, 토큰에 public_repo가 체크됐는지 확인해 주세요.';
     else ghErr = '불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요. (' + (s || '오류') + ')';
+    authState = 'login'; renderAdmin();
+  });
+}
+function nlAuth() {
+  authState = 'loading'; renderAdmin();
+  nlWidget().then(function (ni) {
+    var u = ni.currentUser();
+    if (!u) { authState = 'login'; renderAdmin(); return; }
+    ghUser = (u.user_metadata && u.user_metadata.full_name) || u.email || '';
+    return ghLoad().then(function (data) {
+      DATA = data; view = DATA; draft = null; dirty = false; authState = 'ok'; ghErr = '';
+      var msg = '', local = null;
+      try { local = JSON.parse(localStorage.getItem(LOCAL_KEY) || 'null'); } catch (e) {}
+      if (local && local.base === DATA.rev && local.draft) { draft = local.draft; dirty = true; msg = '게시하지 않은 수정 내용(' + fmtTime(local.at) + ' 보관)을 불러왔어요.'; }
+      else if (local) { try { localStorage.removeItem(LOCAL_KEY); } catch (e) {} if (local.draft) msg = '보관된 수정 내용이 있었지만, 그 사이 다른 관리자가 게시해서 정리했어요.'; }
+      renderAdmin(msg);
+    });
+  }).catch(function (err) {
+    var st = err && err.status;
+    if (st === 'widget') ghErr = '로그인 창을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.';
+    else if (st === 401) ghErr = '로그인이 만료됐어요. 다시 로그인해 주세요.';
+    else if (st === 403 || st === 404 || st === 400) ghErr = '가이드 저장소에 연결하지 못했어요. Netlify의 Identity → Git Gateway 설정을 확인해 주세요. (' + st + ')';
+    else ghErr = '불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요. (' + (st || '오류') + ')';
     authState = 'login'; renderAdmin();
   });
 }
@@ -2739,7 +2797,7 @@ function ghPublish(next, btn) {
   .catch(function (err) {
     btn.disabled = false;
     if (err && err.conflict) { keepLocal(); return toast('다른 관리자가 먼저 게시했어요. 수정 내용은 이 브라우저에 보관했으니, 새로고침해서 최신 내용을 확인한 뒤 다시 반영해 주세요.'); }
-    if (err && err.status === 401) { ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} keepLocal(); authState = 'login'; ghErr = '토큰이 만료됐어요. 새 토큰으로 다시 로그인해 주세요. 수정 내용은 보관해 두었어요.'; return renderAdmin(); }
+    if (err && err.status === 401) { ghToken = ''; try { localStorage.removeItem(TK_KEY); } catch (e) {} keepLocal(); authState = 'login'; ghErr = NLMODE ? '로그인이 만료됐어요. 다시 로그인해 주세요. 수정 내용은 보관해 두었어요.' : '토큰이 만료됐어요. 새 토큰으로 다시 로그인해 주세요. 수정 내용은 보관해 두었어요.'; return renderAdmin(); }
     toast('게시하지 못했어요. 잠시 후 다시 시도해 주세요. (' + ((err && err.status) || '오류') + ')');
   });
 }
