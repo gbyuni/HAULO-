@@ -1,35 +1,25 @@
 # HAULO 크리에이터 가이드
 
-하울로 크리에이터에게 공유하는 서비스 가이드 사이트예요.
-
 | 구분 | 주소 |
 | --- | --- |
-| 크리에이터용 (공유 링크) | https://buly.kr/hauloguide |
-| 실제 사이트 주소 | https://gbyuni.github.io/HAULO-/ |
-| 관리자 화면 | Claude 가이드 관리자 화면 (주소는 팀 노션 참고) |
+| 크리에이터용 | https://haulocreators.netlify.app/ |
+| 관리자용 | https://haulocreators.netlify.app/admin/ |
+| 원본(GitHub Pages) | https://gbyuni.github.io/HAULO-/ |
 
-## 저장소 구성
-- `index.html` : 크리에이터 가이드 전체. 로고, 이미지, 가이드 내용이 모두 이 파일 하나에 들어 있어요.
-
-이 저장소에는 `index.html` 하나만 두면 돼요.
+## 구조
+- 가이드 원본은 이 저장소의 `index.html` 하나예요. 내용과 이미지가 모두 이 파일에 들어 있어요.
+- GitHub Pages가 이 저장소를 배포하고, Netlify 주소는 GitHub Pages 화면을 그대로 보여줘요(프록시).
+- 그래서 관리자 화면에서 게시해도 **Netlify 배포가 일어나지 않아요.** Netlify 크레딧이 들지 않아요.
+- `admin/index.html`은 관리자 화면(`#admin`)으로 이동시키는 바로가기예요.
 
 ## 가이드 수정하는 방법
-1. Claude 관리자 화면에서 내용을 고치고 **게시하기**를 눌러요.
-2. 왼쪽 아래 **공개 사이트로 내보내기 → index.html 내려받기**를 눌러요.
-3. 이 저장소 첫 화면에서 **Add file → Upload files**를 누르고, 내려받은 `index.html`을 끌어다 놓은 뒤 **Commit changes**를 눌러요.
-4. 1~2분 뒤 크리에이터용 링크에 반영돼요.
+1. `https://haulocreators.netlify.app/admin/`에 들어가요.
+2. GitHub 토큰으로 로그인해요. (처음 한 번: 저장소 공동 작업자 초대 수락 → 토큰 만들기. 방법은 로그인 화면에 있어요.)
+3. 내용을 고치고 **게시하기**를 누르면 이 저장소의 `index.html`이 바로 바뀌어요.
+4. GitHub Pages 배포 후 몇 분 안에 크리에이터 화면에 반영돼요. Netlify 쪽은 캐시 때문에 최대 10분 정도 늦게 보일 수 있어요.
 
-## 업로드할 때 주의할 점
-- 파일 이름은 꼭 `index.html`이어야 해요. `index (1).html`처럼 이름이 바뀌면 반영되지 않아요.
-- 폴더 안이 아니라 **저장소 첫 화면**에서 올려 주세요.
-- ZIP이나 폴더를 통째로 올리지 말고, `index.html` 파일 하나만 올려 주세요.
-- 이 저장소는 공개 상태예요. 내부 자료나 개인정보가 담긴 파일은 올리지 마세요.
-
-## 반영이 안 보일 때
-- GitHub Pages는 반영 후에도 잠시 예전 화면을 보여줄 수 있어요. 2~3분 뒤 새로고침하거나 시크릿 창으로 열어 보세요.
-- 저장소 상단 **Actions** 탭에서 맨 위 'pages build and deployment'가 초록색 체크인지 확인해 주세요.
-
-## 앞으로의 계획
-- Netlify 크레딧이 충전되는 **11월 10일 이후**, 관리자 화면과 크리에이터 가이드를 Netlify(이메일 로그인, 게시 시 자동 반영)로 옮길 예정이에요.
-- 그 전까지 Netlify는 빌드를 멈춰 둔 상태(Stopped builds)로 유지해요.
-- 옮긴 뒤에는 `buly.kr/hauloguide`의 연결 주소만 Netlify 주소로 바꾸면 돼요.
+## 주의할 점
+- Claude 관리자 화면에서 **공개 사이트로 내보내기**로 만든 `index.html`을 더 이상 올리지 마세요. 그 파일은 관리자 기능이 꺼진 버전이라, 올리면 관리자 화면이 막혀요.
+- 파일 이름은 꼭 `index.html`이어야 하고, 저장소 첫 화면에 있어야 해요.
+- 이 저장소는 공개 상태예요. 내부 자료나 개인정보는 올리지 마세요.
+- Netlify는 **빌드 중지(Stopped builds)** 상태로 두세요. 저장소와 연결된 자동 배포를 다시 켜면 게시할 때마다 크레딧이 들어요.
